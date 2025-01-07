@@ -1,7 +1,5 @@
 package com.korit.servlet_study.servlet;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,8 +26,8 @@ public class ProductSearchPageServlet extends HttpServlet {
         String searchValue = request.getParameter("searchValue");
         request.setAttribute("products", productList);
 
-        if(searchValue != null) {
-            if(!searchValue.isBlank()) {
+        if (searchValue != null) {
+            if (!searchValue.isBlank()) {
                 request.setAttribute("products", productList.stream()
                         .filter(p -> p.get("productName").toString().contains(searchValue))
                         .collect(Collectors.toList()));

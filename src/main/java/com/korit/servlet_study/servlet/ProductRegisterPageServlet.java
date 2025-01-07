@@ -40,7 +40,7 @@ public class ProductRegisterPageServlet extends HttpServlet {
         System.out.println(req.getParameter("registerDate"));
         resp.setContentType("application/json");
         resp.setStatus(200);
-        resp.getWriter().println("{\"name\":\"김준일\"}");
+        resp.getWriter().println("{\"name\":\"김선혜\"}");
 //        resp.getWriter().println(
 //                "<script>"
 //                        + "alert(\"등록이 완료되었습니다.\");"
