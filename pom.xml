@@ -38,6 +38,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
+        
+        <!--        java -> JSON / JSON -> java 객체로 바꿔주는 라이브러리-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.18.2</version>
+        </dependency>
     </dependencies>
 
     <build>
