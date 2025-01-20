@@ -17,7 +17,6 @@ import java.io.IOException;
 public class BookRestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
 
         Author author = new Author(1, "author");
         Publisher publisher = new Publisher(1, "publisher");
@@ -26,18 +25,28 @@ public class BookRestServlet extends HttpServlet {
         Book book = Book.builder()
                 .bookId(1)
                 .bookName("bookname")
+                .isbn("12333333")
+                .bookImgUrl("bookImgUrl")
+
+                .authorId(author.getAuthorId())
+                .publisherId(publisher.getPublisherId())
+                .categoryId(category.getCategoryId())
+
                 .author(author)
                 .publisher(publisher)
                 .bookCategory(category)
-                .bookImgUrl("bookImgUrl")
                 .build();
 
+//        JSON으로 변환
+        ObjectMapper objectMapper = new ObjectMapper();
         String jsonBook = objectMapper.writeValueAsString(book);
-        
-        resp.setHeader("Access-Control-Allow-Origin", "*");
-        resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-        resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
-        resp.setHeader("Access-Control-Allow-Credentials", "true");
+
+//        요청 응답 과정 : 리액트 <-> 톰캣서버 <-> 필터 <-> 서불릿 -> 서비스 -> 레파지토리 -> 디비
+//        요청 후 응답 시 Cors 에러 처리: filter 파일로 뺴서 매 호촐 시 중복 되는 코드 캡슐화
+//        resp.setHeader("Access-Control-Allow-Origin", "*");
+//        resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+//        resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
+//        resp.setHeader("Access-Control-Allow-Credentials", "true");
 
         resp.setContentType("application/json");
         resp.getWriter().write(jsonBook);
